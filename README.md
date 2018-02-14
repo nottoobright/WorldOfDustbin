@@ -1,10 +1,4 @@
-# IOT enabled
-
-# Decentralized Waste
-
-# Management using
-
-# IOTA.
+# IOT enabled Decentralized Waste Management using IOTA.
 
 
 ## Abstract
