@@ -204,9 +204,9 @@
                                 <!-- <img src="./images/icon/tick.png" alt="" /> -->
                             </div>
                             <div class="content">
-                                <div class="numb" data-from="0" data-to="87" data-speed="1000" data-waypoint-active="yes">87</div>
+                                <div id="cash" class="numb" data-from="0" data-to="87" data-speed="1000" data-waypoint-active="yes"></div>
                                 <div class="text">
-                                    NEAREST DUSTBIN (METERS)
+                                    AVAILABLE IOTA
                                 </div>
                             </div>
                         </li>
@@ -507,7 +507,8 @@
 
         dustRef.on("child_changed", (snapshot) => {
             console.log(snapshotToArray(snapshot)[4]);
-            document.getElementById('streak').innerHTML = snapshotToArray(snapshot)[4];
+            document.getElementById('streak').innerHTML = snapshotToArray(snapshot)[6];
+            document.getElementById('cash').innerHTML = snapshotToArray(snapshot)[0];
             fill("db1", snapshotToArray(snapshot)[3]);
         })
 
