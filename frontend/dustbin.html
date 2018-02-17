@@ -227,10 +227,10 @@
             <div class="container-fluid">
                 <div class="query-box" style="padding:20px;">
                    <div class="col-sm-6">
-                    <img class="" src="images/bins/20.png">
+                    <img id="db1" class="" src="images/bins/20.png">
                     </div>
                     <div class="col-sm-6" >
-                    <img class="" src="images/bins/0.png" style="display:none">
+                    <img id="db2" class="hidden" src="images/bins/0.png" >
                     </div>
                   
                 </div>
@@ -244,7 +244,7 @@
       </div><!-- /.rows -->
 
       <div class="rows">
-        <div class="box box-statistics right">
+        <div class="box box-statistics left">
           <div class="box-header with-border">
             <div class="box-title">
               <h3>DUSTBIN QUERIES</h3>
@@ -327,7 +327,93 @@
               </div>
           </div><!-- /.box-content -->
         </div><!-- /.box box-statistics -->
+      <div class="box box-statistics left">
+          <div class="box-header with-border">
+            <div class="box-title">
+              <h3>DUSTBIN QUERIES</h3>
+            </div>
+          <div class="box-tools pull-right">
+              <i class="zmdi zmdi-more-vert waves-effect waves-teal"></i> 
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" class="waves-effect" title="">Action</a>
+                </li>
+                <li>
+                  <a href="#" class="waves-effect" title="">Support</a>
+                </li>
+                <li>
+                  <a href="#" class="waves-effect" title="">FAQ</a>
+                </li>
+                <li>
+                  <a href="#" class="waves-effect" title="">Message</a>
+                </li>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+          </div><!-- /.box-header -->
+          <div class="box-content style1">
+            <div class="container-fluid">
+                <div class="query-box" style="padding:20px;">
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                    <div class="query-content">
+                        	&nbsp;
+                    </div>
+                </div>
+                
+              </div>
+          </div><!-- /.box-content -->
+        </div><!-- /.box box-statistics -->
+     
+        <!-- /.box box-bubble -->
         <div class="clearfix"></div>
+          
       </div><!-- /.rows -->
 
       
@@ -413,7 +499,21 @@
   <script src="./javascript/waves.min.js"></script>
   <script src="./javascript/canvasjs.min.js"></script>
   <script src="./javascript/nearestDustbins.js"></script>
-
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script >
+    function attach(){
+        document.getElementById('db2').className = "";
+    }
+    function fill(db,percent){
+        document.getElementById(db).src = "images/bins/"+ percent +".png";
+    }
+    function detach(){
+        document.getElementById('db2').className = "hidden";
+    }
+    
+    </script>
   <script src="./javascript/main.js"></script>
 
 </body>
