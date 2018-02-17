@@ -22,7 +22,7 @@
         var id = Date.now();
 
         usersRef = db.ref('users/');
-        
+        dustRef = db.ref('dustbins/');
 
         usersRef.once('value', function(snapshot){
             if(!snapshot.hasChild(username)){
@@ -37,5 +37,14 @@
             }
         });
 
+
+        usersRef.on("child_changed", (snapshot) => {
+            const change = snapshot.val();
+            console.log(change);
+        });
+
+        dustRef.once('value', (snapshot) => {
+            console.log(snapshot.val());
+        });
 
 </script>

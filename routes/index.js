@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 
-
+/*
 // IOTA stuff starts here
 var IOTA = require('iota.lib.js/lib/iota');
 
@@ -67,7 +67,7 @@ iota.api.prepareTransfers("SSEWOZSDXOVIURQRBTBDLQXWIXOLEUXHYBGAVASVPZ9HBTYJJEWBR
 
 
 //IOTA stuff ends here
-
+*/
 
 
 
