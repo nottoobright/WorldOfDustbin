@@ -271,56 +271,8 @@
           <div class="box-content style1">
             <div class="container-fluid">
                 <div class="query-box" style="padding:20px;">
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
+                    <div class="col-sm-12 borderbuy">
+                        <h1 id='query'>Daddy 1 wants a dustbin! </h1>
                     </div>
                 </div>
                 
@@ -383,6 +335,21 @@
         document.getElementById('db2').className = "";
     }
     function fill(db,percent){
+        if(percent > 0 && percent < 20){
+            percent = 20
+        }
+        if(percent > 21 && percent < 40){
+            percent = 40
+        }
+        if(percent > 41 && percent < 60){
+            percent = 60
+        }
+        if(percent > 61 && percent < 80){
+            percent = 80
+        }
+        if(percent > 81 && percent <= 100){
+            percent = 100
+        }
         document.getElementById(db).src = "images/bins/"+ percent +".png";
     }
     function detach(){
