@@ -1166,7 +1166,7 @@ main.open.active {
 /* Status Bar */
 .status-bar ul li {
 	display: inline-block;
-	width: calc(25% - 6px);
+	width: calc(50% - 6px);
     margin-right: 4px;
 	border-radius: 8px;
 	/* box-shadow: inset 0px 0px 90px 0px rgba(0,0,0,0.18); */
@@ -1334,7 +1334,11 @@ main.open.active {
 
 .box-statistics,
 .box-line {
-	width: calc(62% - 4px);
+	width: calc(50% - 4px);
+}
+
+.box-right{
+    width: calc(50% - 4px);
 }
 
 .box-stackedColumn,
