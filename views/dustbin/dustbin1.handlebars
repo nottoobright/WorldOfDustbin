@@ -294,7 +294,7 @@
                     <div class="box-content style1">
                         <div class="container-fluid">
                             <div class="query-box" >
-                                <div id="border" class="col-sm-12 borderbuy" style="padding:10px;">
+                                <div id="border" class="col-sm-12" style="padding:10px;">
                                     <h2 id='query'></h2>
                                 </div>
                             </div>
@@ -388,69 +388,7 @@
 
 
 
-        Highcharts.chart('graph-box', {
-
-            title: {
-                text: 'Usage (Streaks)'
-            },
-
-            subtitle: {
-                text: ''
-            },
-
-            yAxis: {
-                title: {
-                    text: 'Number of Employees'
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                    pointStart: 2010
-                }
-            },
-
-            series: [{
-                name: 'Installation',
-                data: [44, 53, 57, 68,31, 31, 13, 15]
-            }, {
-                name: 'Manufacturing',
-                data: [16, 24, 22, 21, 30, 32, 31, 44]
-            }, {
-                name: 'Sales & Distribution',
-                data: [14, 12, 15, 11, 25, 27, 37, 37]
-            }, {
-                name: 'Project Development',
-                data: [null, null, 8, 19, 12, 22, 30, 37]
-            }, {
-                name: 'Other',
-                data: [18, 8, 5, 18, 9, 16, 14, 11]
-            }],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
-
-        });
+       
     </script>
     <script src="../js/main.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
@@ -474,7 +412,7 @@
 
         dustRef.on("value", (snapshot) => {
             console.log(snapshot.val());
-            document.getElementById('streak').innerHTML = snapshotToArray(snapshot)[6];
+            document.getElementById('streak').innerHTML = snapshot.val().streak;
             document.getElementById('cash').innerHTML = snapshotToArray(snapshot)[0];
             fill("db1", snapshotToArray(snapshot)[3]);
             const queryType = snapshotToArray(snapshot)[5];
@@ -487,7 +425,61 @@
             else if (queryType === 2) {
                 document.getElementById('border').className = 'col-sm-12 borderbuyfrom';
             }
+            else {
+                document.getElementById('border').className = 'col-sm-12';
+            }
             document.getElementById('query').innerHTML = snapshotToArray(snapshot)[4];
+             Highcharts.chart('graph-box', {
+
+                    title: {
+                        text: 'Usage (Streaks)'
+                    },
+
+                    subtitle: {
+                        text: ''
+                    },
+
+                    yAxis: {
+                        title: {
+                            text: 'Number of Employees'
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
+                    },
+
+                    plotOptions: {
+                        series: {
+                            label: {
+                                connectorAllowed: false
+                            },
+                            pointStart: 2010
+                        }
+                    },
+
+                    series: [{
+                        name: 'Installation',
+                        data: [44, 53, 57, 68, 31, 31, 13, snapshotToArray(snapshot)[6]]
+                    }],
+
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+
+                });
         })
 
         function snapshotToArray(snapshot) {
