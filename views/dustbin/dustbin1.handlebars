@@ -191,7 +191,7 @@
                                 <img src="../images/icon/progress.png" alt="" />
                             </div>
                             <div class="content">
-                                <div class="numb" data-from="0" data-to="38" data-speed="1000" data-waypoint-active="yes">38</div>
+                                <div class="numb" id="streak" data-from="0" data-to="100" data-speed="1000" data-waypoint-active="yes"></div>
                                 <div class="text">
                                     DISPOSAL STREAK
                                 </div>
@@ -204,9 +204,9 @@
                                 <!-- <img src="./images/icon/tick.png" alt="" /> -->
                             </div>
                             <div class="content">
-                                <div class="numb" data-from="0" data-to="87" data-speed="1000" data-waypoint-active="yes">87</div>
+                                <div id="cash" class="numb" data-from="0" data-to="87" data-speed="1000" data-waypoint-active="yes"></div>
                                 <div class="text">
-                                    NEAREST DUSTBIN (METERS)
+                                    AVAILABLE IOTA
                                 </div>
                             </div>
                         </li>
@@ -294,59 +294,10 @@
                     <div class="box-content style1">
                         <div class="container-fluid">
                             <div class="query-box" style="padding:20px;">
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
+                                <div id="border" class="col-sm-12 borderbuy">
+                                    <h2 id='query'></h2>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!-- /.box-content -->
@@ -410,8 +361,24 @@
         function attach() {
             document.getElementById('db2').className = "";
         }
+
         function fill(db, percent) {
-            document.getElementById(db).src = "images/bins/" + percent + ".png";
+            if (percent > 0 && percent < 20) {
+                percent = 20
+            }
+            if (percent > 21 && percent < 40) {
+                percent = 40
+            }
+            if (percent > 41 && percent < 60) {
+                percent = 60
+            }
+            if (percent > 61 && percent < 80) {
+                percent = 80
+            }
+            if (percent > 81 && percent <= 100) {
+                percent = 100
+            }
+            document.getElementById(db).src = "../images/bins/" + percent + ".png";
         }
         function detach() {
             document.getElementById('db2').className = "hidden";
@@ -486,10 +453,7 @@
         });
     </script>
     <script src="../js/main.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js">
-
-
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script>
         console.log("Initializing Firebase");
         // Initialize Firebase
@@ -506,12 +470,38 @@
         var db = firebase.database();
 
         usersRef = db.ref('users/');
-        dustRef = db.ref('dustbins/');
+        dustRef = db.ref('dustbins/1518880087182');
 
-        dustRef.on("child_changed", (snapshot) => {
+        dustRef.on("value", (snapshot) => {
             console.log(snapshot.val());
+            document.getElementById('streak').innerHTML = snapshotToArray(snapshot)[6];
+            document.getElementById('cash').innerHTML = snapshotToArray(snapshot)[0];
+            fill("db1", snapshotToArray(snapshot)[3]);
+            const queryType = snapshotToArray(snapshot)[5];
+            if (queryType === 0) {
+                document.getElementById('border').className = 'col-sm-12 borderbuy';
+            }
+            else if (queryType === 1) {
+                document.getElementById('border').className = 'col-sm-12 bordersell';
+            }
+            else if (queryType === 2) {
+                document.getElementById('border').className = 'col-sm-12 borderbuyfrom';
+            }
+            document.getElementById('query').innerHTML = snapshotToArray(snapshot)[4];
         })
 
+        function snapshotToArray(snapshot) {
+            var returnArr = [];
+
+            snapshot.forEach(function (childSnapshot) {
+                var item = childSnapshot.val();
+                item.key = childSnapshot.key;
+
+                returnArr.push(item);
+            });
+
+            return returnArr;
+        };
     </script>
 
 </body>

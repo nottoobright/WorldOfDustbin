@@ -293,60 +293,11 @@
                     <!-- /.box-header -->
                     <div class="box-content style1">
                         <div class="container-fluid">
-                            <div class="query-box" style="padding:20px;">
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                                <div class="query-content">
-                                    &nbsp;
-                                </div>
-                            </div>
-
+                                            <div class="query-box" style="padding:20px;">
+                                                <div id="border" class="col-sm-12 borderbuy">
+                                                    <h2 id='query'></h2>
+                                                </div>
+                                            </div>
                         </div>
                     </div>
                     <!-- /.box-content -->
@@ -410,9 +361,25 @@
         function attach() {
             document.getElementById('db2').className = "";
         }
-        function fill(db, percent) {
-            document.getElementById(db).src = "bins/" + percent + ".png";
-        }
+        
+            function fill(db, percent) {
+                if (percent > 0 && percent < 20) {
+                    percent = 20
+                }
+                if (percent > 21 && percent < 40) {
+                    percent = 40
+                }
+                if (percent > 41 && percent < 60) {
+                    percent = 60
+                }
+                if (percent > 61 && percent < 80) {
+                    percent = 80
+                }
+                if (percent > 81 && percent <= 100) {
+                    percent = 100
+                }
+                document.getElementById(db).src = "../images/bins/" + percent + ".png";
+            }
         function detach() {
             document.getElementById('db2').className = "hidden";
         }
@@ -503,13 +470,24 @@
         var db = firebase.database();
 
         usersRef = db.ref('users/');
-        dustRef = db.ref('dustbins/');
+        dustRef = db.ref('dustbins/1518880134851');
 
-        dustRef.on("child_changed", (snapshot) => {
-            console.log(snapshotToArray(snapshot)[4]);
+        dustRef.on("value", (snapshot) => {
+            console.log(snapshot.val());
             document.getElementById('streak').innerHTML = snapshotToArray(snapshot)[6];
             document.getElementById('cash').innerHTML = snapshotToArray(snapshot)[0];
             fill("db1", snapshotToArray(snapshot)[3]);
+            const queryType = snapshotToArray(snapshot)[5];
+            if(queryType === 0){
+                document.getElementById('border').className = 'col-sm-12 borderbuy';
+            }
+                else if (queryType === 1) {
+                    document.getElementById('border').className = 'col-sm-12 bordersell';
+                }
+                else if (queryType === 2) {
+                    document.getElementById('border').className = 'col-sm-12 borderbuyfrom';
+                }                            
+            document.getElementById('query').innerHTML = snapshotToArray(snapshot)[4];
         })
 
         function snapshotToArray(snapshot) {
