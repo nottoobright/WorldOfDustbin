@@ -10,7 +10,7 @@ if not os.path.isdir(path):
     os.mkdir(path)
 (im_width, im_height) = (130, 100)
 haar_cascade = cv2.CascadeClassifier(fn_haar)
-webcam = cv2.VideoCapture(0)
+
 
 
 print ("-----------------------Taking pictures----------------------")
@@ -18,6 +18,7 @@ print ("--------------------Give some expressions---------------------")
 # The program loops until it has 20 images of the face.
 
 while count < 45:
+    webcam = cv2.VideoCapture(0)
     (rval, im) = webcam.read()
     im = cv2.flip(im, 1, 0)
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)

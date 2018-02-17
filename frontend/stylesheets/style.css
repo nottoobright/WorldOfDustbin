@@ -1298,6 +1298,13 @@ main.open.active {
 	border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
+#graph-box {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+
 .box .pull-right ul.dropdown-menu li a {
 	padding: 8px 15px;
 }

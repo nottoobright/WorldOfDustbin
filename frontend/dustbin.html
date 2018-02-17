@@ -328,87 +328,13 @@
           </div><!-- /.box-content -->
         </div><!-- /.box box-statistics -->
       <div class="box box-statistics left">
-          <div class="box-header with-border">
-            <div class="box-title">
-              <h3>DUSTBIN QUERIES</h3>
-            </div>
-          <div class="box-tools pull-right">
-              <i class="zmdi zmdi-more-vert waves-effect waves-teal"></i> 
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" class="waves-effect" title="">Action</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">Support</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">FAQ</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">Message</a>
-                </li>
-              </ul>
-            </div>
-            <div class="clearfix"></div>
-          </div><!-- /.box-header -->
-          <div class="box-content style1">
-            <div class="container-fluid">
-                <div class="query-box" style="padding:20px;">
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                    <div class="query-content">
-                        	&nbsp;
-                    </div>
-                </div>
+
+         
+            <div  id="graph-box"  style="padding:0px;width:100%;margin:0;">
+            
                 
               </div>
-          </div><!-- /.box-content -->
+        <!-- /.box-content -->
         </div><!-- /.box box-statistics -->
      
         <!-- /.box box-bubble -->
@@ -418,57 +344,7 @@
 
       
 
-      <div class="rows">
-        <div class="box box-map left">
-          <div class="box-header with-border">
-            <div class="box-title">
-              <h3>MAP DIAGRAM</h3>
-            </div>
-            <div class="box-tools pull-right">
-              <i class="zmdi zmdi-more-vert waves-effect waves-teal"></i>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" class="waves-effect" title="">Action</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">Support</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">FAQ</a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect" title="">Message</a>
-                </li>
-              </ul>
-            </div><!-- /.box-tools pull-right -->
-            <div class="clearfix"></div>
-          </div><!-- /.box-header -->
-          <div class="box-content">
-            <div class="divider35"></div>
-            <div id="chartdiv"></div>
-            <div class="legend">
-              <ul class="legend-list">
-                <li class="ux">
-                  <span class="dot"></span>
-                  <span class="text">UX Design</span>
-                </li>
-                <li class="ui">
-                  <span class="dot"></span>
-                  <span class="text">UI Design</span>
-                </li>
-                <li class="code">
-                  <span class="dot"></span>
-                  <span class="text">Code</span>
-                </li>
-              </ul>
-            </div>
-          </div><!-- /.box-content -->
-        </div><!-- /.box box-map -->
-        <!-- /.box box-bubble -->
-        <div class="clearfix"></div>
-      </div><!-- /.rows -->
-
-      <!-- /.rows -->
+   
     </section><!-- /#dashboard -->
   </main><!-- /main -->
 
@@ -513,6 +389,74 @@
         document.getElementById('db2').className = "hidden";
     }
     
+      
+      
+      
+      
+Highcharts.chart('graph-box', {
+
+    title: {
+        text: 'Usage (Streaks)'
+    },
+
+    subtitle: {
+        text: ''
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, {
+        name: 'Manufacturing',
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    }, {
+        name: 'Sales & Distribution',
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    }, {
+        name: 'Project Development',
+        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    }, {
+        name: 'Other',
+        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+      
     </script>
   <script src="./javascript/main.js"></script>
 
