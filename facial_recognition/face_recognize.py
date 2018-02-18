@@ -1,5 +1,8 @@
 # facerec.py
 import cv2, sys, numpy, os
+from firebase import firebase
+firebase = firebase.FirebaseApplication('https://dj-hack.firebaseio.com', None)
+
 size = 4
 haar_file = 'haarcascade_frontalface_default.xml'
 datasets = 'database'
@@ -32,6 +35,7 @@ model.train(images, lables)
 
 # Part 2: Use fisherRecognizer on camera stream
 face_cascade = cv2.CascadeClassifier(haar_file)
+flag = 0
 
 while True:
     webcam = cv2.VideoCapture(0)
@@ -46,7 +50,11 @@ while True:
         prediction = model.predict(face_resize)
         cv2.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
-        if prediction[1]<500:
+        if prediction[1]<700:
+            data3 = {'cash': 0, 'currentUser': names[prediction[0]], 'parent': '', 'percentFull': 0, 'queryText': '', 'queryType': -1, 'streak': 0}
+            if(flag < 1):
+                firebase.put('/dustbins', "1518880087182", data3)
+                flag+=1
             cv2.putText(im,'%s - %.0f' % (names[prediction[0]],prediction[1]),(x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
         else:
             cv2.putText(im,'not recognized',(x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
